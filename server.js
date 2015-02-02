@@ -1,8 +1,14 @@
 var WebSocketServer = require('ws').Server
 , wss = new WebSocketServer({port: 8080});
+
+wss.on('open', function open() {
+      ws.send('connected');
+});
+
 wss.on('connection', function(ws) {
-      ws.on('message', function(message) {
+      wss.on('message', function(message) {
             console.log('received: %s', message);
+            wss.send(message);
       });
-      ws.send('hello World');
+      wss.send('hello World!');
 });
