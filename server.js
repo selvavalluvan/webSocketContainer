@@ -8,7 +8,7 @@ wss.on('open', function open() {
 wss.on('connection', function(ws) {
       wss.on('message', function(message) {
             console.log('received: %s', message);
-            wss.send(message);
+            ws.send(message);
       });
-      wss.send('hello World!');
+      ws.send('hello World!');
 });
